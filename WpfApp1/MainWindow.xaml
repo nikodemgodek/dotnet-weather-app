@@ -1,0 +1,51 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBox x:Name="searchContainer" HorizontalAlignment="Left" Margin="39,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="229" Height="21" KeyDown="searchContainer_KeyDown"/>
+        <TextBlock x:Name="timeContainer" HorizontalAlignment="Left" Margin="39,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="48"><Run Language="pl-pl" Text="00:00:00"/></TextBlock>
+        <TextBlock x:Name="dateContainer" TextWrapping="Wrap" Margin="39,167,532,205" FontSize="20"><Run Language="pl-pl" Text="1 stycznia 0000"/></TextBlock>
+        <ListBox x:Name="weatherListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="39,285,40,31">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="5">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Date, StringFormat='dd MMMM yyyy'}" />
+                            <TextBlock Text="{Binding Description}" />
+                            <TextBlock Text="{Binding Temperature, StringFormat='0.0 *C'}" />
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock x:Name="cityContainer" HorizontalAlignment="Left" Margin="300,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Width="425" TextAlignment="Right"><Run Language="pl-pl" Text="Nevada, US"/></TextBlock>
+        <TextBlock x:Name="tempContainer" HorizontalAlignment="Left" Margin="565,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="48" Width="195" TextAlignment="Center" Text="-- ℃"/>
+        <Button x:Name="buttonSearch" Content="Szukaj" HorizontalAlignment="Left" Margin="279,19,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Label x:Name="errorLabel" Content="Błąd podczas pobierania danych pogody." HorizontalAlignment="Left" Margin="33,45,0,0" VerticalAlignment="Top" Width="304" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.13"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.266"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+            <Label.Foreground>
+                <SolidColorBrush Color="Red" />
+                <!-- Ustawienie koloru tekstu na czerwony -->
+            </Label.Foreground>
+        </Label>
+
+
+    </Grid>
+</Window>
